@@ -8,6 +8,6 @@ namespace jaranilla_09252024.application.Services.Interfaces
 {
     public interface IJsonReaderService
     {
-        Task<bool> ProcessJsonAsync(Stream jsonStream);
+        Task<bool> ProcessJsonAsync(Stream jsonStream, string fileName);
     }
 }

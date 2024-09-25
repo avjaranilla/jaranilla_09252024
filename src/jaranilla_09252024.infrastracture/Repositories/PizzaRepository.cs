@@ -27,6 +27,14 @@ namespace jaranilla_09252024.application.Implementation.Repositories
 
         }
 
+        public async Task<List<Pizza>> AddPizzasAsync(List<Pizza> pizzas)
+        {
+            await _context.Pizzas.AddRangeAsync(pizzas);
+            await _context.SaveChangesAsync();
+
+            return pizzas;
+        }
+
         public async Task<IEnumerable<Pizza>> GetPizzasByStatus(bool isActive)
         {
             return await _context.Pizzas.Where(p => p.IsActive == isActive).ToListAsync();
@@ -42,6 +50,13 @@ namespace jaranilla_09252024.application.Implementation.Repositories
             _context.Pizzas.Update(pizza);
             await _context.SaveChangesAsync();
             return pizza;
+        }
+
+        public async Task<List<Pizza>> UpdatePizzasAsync(List<Pizza> pizzas)
+        {
+            _context.Pizzas.UpdateRange(pizzas);
+            await _context.SaveChangesAsync();
+            return pizzas;
         }
     }
 }

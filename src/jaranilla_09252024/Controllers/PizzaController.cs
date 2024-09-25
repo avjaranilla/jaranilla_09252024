@@ -34,7 +34,7 @@ namespace jaranilla_09252024.Controllers
                 using (var stream = jsonFile.OpenReadStream())
                 {
                     // Call the JSON reader service to process the file
-                    var result = await _jsonReaderService.ProcessJsonAsync(stream);
+                    var result = await _jsonReaderService.ProcessJsonAsync(stream, jsonFile.FileName);
 
                     if (!result)
                     {

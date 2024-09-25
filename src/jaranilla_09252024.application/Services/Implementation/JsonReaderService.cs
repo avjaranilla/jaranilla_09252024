@@ -22,33 +22,24 @@ namespace jaranilla_09252024.application.Services.Implementation
             _loggerService = loggerService;
         }
 
-        public async Task<bool> ProcessJsonAsync(Stream jsonStream)
+        public async Task<bool> ProcessJsonAsync(Stream jsonStream, string fileName)
         {
             try
             {
-                // Deserialize JSON file content into Pizza list
-                var pizzas = await JsonSerializer.DeserializeAsync<List<Pizza>>(jsonStream);
+                var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+                var pizzas = await JsonSerializer.DeserializeAsync<List<Pizza>>(jsonStream, options);
 
-         
-                if (pizzas == null || !pizzas.Any())
+                if (pizzas != null && pizzas.Count > 0)
                 {
-                    throw new Exception("JSON File is empty.");
+                    await _pizzaRepositoryService.AddPizzasAsync(pizzas, fileName); // Call the bulk add method with the file name
                 }
-
-                // Iterate through each pizza and add to the system
-                foreach (var pizza in pizzas)
-                {
-                    await _pizzaRepositoryService.AddPizzaAsync(pizza);
-                }
-
                 return true;
             }
-            catch (Exception ex)
+            catch (Exception ex) 
             {
-                // Optionally log the error
-                _loggerService.LogErrorAsync($"Error processing JSON: {ex.Message}", ex);
+                _loggerService.LogErrorAsync($"Something went wrong while processing JSON File: {fileName}. {ex.Message}", ex);
                 throw;
-            }
+            }          
         }
     }
 }
