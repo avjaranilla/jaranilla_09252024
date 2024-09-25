@@ -4,12 +4,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.10.35027.167
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{EDC825CA-3F74-47FF-AA17-A88B68F1A098}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "jaranilla_09252024", "src\jaranilla_09252024\jaranilla_09252024.csproj", "{41BD5C4D-7DEB-43D5-A4E0-7A4C5A2266D9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{B03155E0-12A9-4DC6-BBBC-7E4942A0D223}"
 	ProjectSection(SolutionItems) = preProject
-		src\jaranilla_09252024\.dockerignore = src\jaranilla_09252024\.dockerignore
 		src\jaranilla_09252024\Dockerfile = src\jaranilla_09252024\Dockerfile
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "jaranilla_09252024", "src\jaranilla_09252024\jaranilla_09252024.csproj", "{41BD5C4D-7DEB-43D5-A4E0-7A4C5A2266D9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jaranilla_09252024.domain", "src\jaranilla_09252024.domain\jaranilla_09252024.domain.csproj", "{982C4296-F6F8-42A6-A8FC-C3979A59EE96}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jaranilla_09252024.application", "src\jaranilla_09252024.application\jaranilla_09252024.application.csproj", "{A1F26F17-6F0F-44AB-B849-9E1B9C985DB7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jaranilla_09252024.infrastracture", "src\jaranilla_09252024.infrastracture\jaranilla_09252024.infrastracture.csproj", "{40BAAA5C-5F03-4864-A107-19753EA51024}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,12 +28,27 @@ Global
 		{41BD5C4D-7DEB-43D5-A4E0-7A4C5A2266D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{41BD5C4D-7DEB-43D5-A4E0-7A4C5A2266D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{41BD5C4D-7DEB-43D5-A4E0-7A4C5A2266D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{982C4296-F6F8-42A6-A8FC-C3979A59EE96}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{982C4296-F6F8-42A6-A8FC-C3979A59EE96}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{982C4296-F6F8-42A6-A8FC-C3979A59EE96}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{982C4296-F6F8-42A6-A8FC-C3979A59EE96}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1F26F17-6F0F-44AB-B849-9E1B9C985DB7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1F26F17-6F0F-44AB-B849-9E1B9C985DB7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1F26F17-6F0F-44AB-B849-9E1B9C985DB7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1F26F17-6F0F-44AB-B849-9E1B9C985DB7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{40BAAA5C-5F03-4864-A107-19753EA51024}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{40BAAA5C-5F03-4864-A107-19753EA51024}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{40BAAA5C-5F03-4864-A107-19753EA51024}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{40BAAA5C-5F03-4864-A107-19753EA51024}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{41BD5C4D-7DEB-43D5-A4E0-7A4C5A2266D9} = {EDC825CA-3F74-47FF-AA17-A88B68F1A098}
+		{982C4296-F6F8-42A6-A8FC-C3979A59EE96} = {EDC825CA-3F74-47FF-AA17-A88B68F1A098}
+		{A1F26F17-6F0F-44AB-B849-9E1B9C985DB7} = {EDC825CA-3F74-47FF-AA17-A88B68F1A098}
+		{40BAAA5C-5F03-4864-A107-19753EA51024} = {EDC825CA-3F74-47FF-AA17-A88B68F1A098}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {461E7CD6-6505-4DEC-8D67-DA7F54C03EAA}

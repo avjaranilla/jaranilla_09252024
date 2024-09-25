@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\jaranilla_09252024.domain\jaranilla_09252024.domain.csproj" />
+    <ProjectReference Include="..\jaranilla_09252024.infrastracture\jaranilla_09252024.infrastracture.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Implementation\Services\" />
+  </ItemGroup>
+
+</Project>
