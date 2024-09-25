@@ -18,7 +18,9 @@ namespace jaranilla_09252024.Controllers
         }
 
         // Endpoint for adding a single pizza
-        [HttpPost("single")]
+        [HttpPost]
+        [Route("add-single-record")]
+        [ApiKey]
         public async Task<IActionResult> AddPizza([FromBody] Pizza pizza)
         {
             await _pizzaRepository.AddPizzaAsync(pizza);
@@ -27,6 +29,8 @@ namespace jaranilla_09252024.Controllers
         }
 
         [HttpGet]
+        [Route("get")]
+        [ApiKey]
         public async Task<ActionResult<List<Pizza>>> GetProcessedPizzas()
         {
             var pizzas = await _pizzaRepository.GetProcessedPizzasAsync();
