@@ -1,6 +1,7 @@
 ﻿using jaranilla_09252024.application.Implementation.Services.Interfaces;
 using jaranilla_09252024.application.Interfaces.Repositories;
 using jaranilla_09252024.domain.Domain;
+using jaranilla_09252024.domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -15,41 +16,78 @@ namespace jaranilla_09252024.application.Implementation.Services.Implementation
     {
 
         private readonly IPizzaRepository _pizzaRepository;
+        private readonly IFileProcessingLogRepositoryService _fileProcessingLogRepositoryService;
+        private readonly ILoggingService _loggingService;
 
-        public PizzaRepositoryService(IPizzaRepository pizzaRepository)
+        public PizzaRepositoryService(IPizzaRepository pizzaRepository, IFileProcessingLogRepositoryService fileProcessingLogRepository, ILoggingService logger)
         {
             this._pizzaRepository = pizzaRepository;
+            this._fileProcessingLogRepositoryService = fileProcessingLogRepository;
+            _loggingService = logger;
         }
 
         public async Task<Pizza> AddPizzaAsync(Pizza pizza)
         {
-            // Start measuring the processing time
-            var stopwatch = new Stopwatch();
-            stopwatch.Start();
+            try
+            {
+                
 
-            // Add the pizza to the repository
-            var result = await _pizzaRepository.AddPizzaAsync(pizza);
+                // Start measuring the processing time
+                var stopwatch = new Stopwatch();
+                stopwatch.Start();
 
-            // Stop measuring the processing time
-            stopwatch.Stop();
+                // Add the pizza to the repository
+                await _loggingService.LogInformationAsync($"Adding pizza: {pizza.Name}");
+                var result = await _pizzaRepository.AddPizzaAsync(pizza);
 
-            // Calculate and save the processing time
-            result.ProcessingTime = stopwatch.Elapsed;
+                // Stop measuring the processing time
+                stopwatch.Stop();
 
-            // Update the pizza with the processing time
-            await _pizzaRepository.UpdatePizzaAsync(result);
+                // Calculate and save the processing time
+                result.ProcessingTime = stopwatch.Elapsed;
 
-            return result;
+                // Update the pizza with the processing time
+                await _pizzaRepository.UpdatePizzaAsync(result);
+
+                // Log the processedFile
+                await _loggingService.LogInformationAsync($"Logging Processed File: {"filename here..."}");
+                await _fileProcessingLogRepositoryService.AddLogAsync("FileName Here...", result.ProcessingTime);
+
+                return result;
+            }
+            catch (Exception ex) 
+            {
+                await _loggingService.LogErrorAsync($"Error adding pizza: {pizza.Name}", ex);
+                throw;
+            }
         }
 
         public async Task<IEnumerable<Pizza>> GetPizzasByStatus(bool isActive)
         {
-            return await _pizzaRepository.GetPizzasByStatus(isActive);
+            try 
+            {
+                return await _pizzaRepository.GetPizzasByStatus(isActive);
+            }
+            catch (Exception ex)
+            {
+                await _loggingService.LogErrorAsync($"Error Getting Pizzas", ex);
+                throw;
+            }
+            
         }
 
         public async Task<List<Pizza>> GetProcessedPizzasAsync()
         {
-            return await _pizzaRepository.GetProcessedPizzasAsync();
+            try
+            {
+                return await _pizzaRepository.GetProcessedPizzasAsync();
+            }
+            catch (Exception ex)
+            {
+                await _loggingService.LogErrorAsync($"Error GettingProccessed Pizzas", ex);
+                throw;
+            }
+
         }
 
         public async Task<Pizza> UpdatePizzaAsync(Pizza pizza)

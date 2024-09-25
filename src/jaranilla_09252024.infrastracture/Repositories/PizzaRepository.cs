@@ -12,9 +12,9 @@ namespace jaranilla_09252024.application.Implementation.Repositories
 {
     public class PizzaRepository : IPizzaRepository
     {
-        private readonly PizzaDbContext _context;
+        private readonly AppDbContext _context;
 
-        public PizzaRepository(PizzaDbContext context)
+        public PizzaRepository(AppDbContext context)
         {
             _context = context;
         }

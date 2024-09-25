@@ -1,4 +1,5 @@
-﻿using jaranilla_09252024.application.Implementation.Services.Interfaces;
+﻿using jaranilla_09252024.application.Implementation.Services.Implementation;
+using jaranilla_09252024.application.Implementation.Services.Interfaces;
 using jaranilla_09252024.application.Interfaces.Repositories;
 using jaranilla_09252024.application.Interfaces.Services;
 using jaranilla_09252024.domain.Domain;
@@ -8,39 +9,47 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace jaranilla_09252024.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/pizzas")]
     [ApiController]
     public class PizzaController : Controller
     {
         private readonly IPizzaRepositoryService _pizzaRepositoryService;
+        private readonly ILoggingService _loggingService;
 
-        public PizzaController(IPizzaRepositoryService pizzaRepositoryService)
+        public PizzaController(IPizzaRepositoryService pizzaRepositoryService, ILoggingService loggingService)
         {
             _pizzaRepositoryService = pizzaRepositoryService;
+            _loggingService = loggingService;
         }
 
 
         // Endpoint for adding a single pizza
         [HttpPost]
-        [Route("add-single-record")]
+        [Route("add-singleRecord")]
         [ApiKey]
         public async Task<IActionResult> AddPizza([FromBody] PizzaRequestModel pizzaRequest)
         {
-
-            var pizza = new Pizza
+            try
             {
-                Name = pizzaRequest.Name,
-                Type = pizzaRequest.Type,
-                Description = pizzaRequest.Description,
-                Size = pizzaRequest.Size,
-                Amount = pizzaRequest.Amount,
-                IsActive = pizzaRequest.IsActive,
-                DateCreated = DateTime.UtcNow
-            };
+                var pizza = new Pizza
+                {
+                    Name = pizzaRequest.Name,
+                    Type = pizzaRequest.Type,
+                    Description = pizzaRequest.Description,
+                    Size = pizzaRequest.Size,
+                    Amount = pizzaRequest.Amount,
+                    IsActive = pizzaRequest.IsActive,
+                    DateCreated = DateTime.UtcNow
+                };
 
-            await _pizzaRepositoryService.AddPizzaAsync(pizza);
-            return CreatedAtAction(nameof(GetProcessedPizzas), new { id = pizza.Id }, pizza);
-
+                await _pizzaRepositoryService.AddPizzaAsync(pizza);
+                return CreatedAtAction(nameof(GetProcessedPizzas), new { id = pizza.Id }, pizza);
+            }
+            catch (Exception ex) 
+            {
+                await _loggingService.LogErrorAsync("Error in AddPizza endpoint", ex);
+                return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while processing your request.");
+            }        
         }
 
         [HttpGet]
@@ -48,27 +57,45 @@ namespace jaranilla_09252024.Controllers
         [ApiKey]
         public async Task<ActionResult<List<Pizza>>> GetProcessedPizzas()
         {
-            var pizzas = await _pizzaRepositoryService.GetProcessedPizzasAsync();
-            if (pizzas.Count() <= 0)
+            try
             {
-                return NoContent();
+                var pizzas = await _pizzaRepositoryService.GetProcessedPizzasAsync();
+                if (pizzas.Count() <= 0)
+                {
+                    return NoContent();
+                }
+                return Ok(pizzas);
             }
-            return Ok(pizzas);
+            catch (Exception ex) 
+            {
+                await _loggingService.LogErrorAsync("Error in GetProcessedPizza endpoint", ex);
+                return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while processing your request.");
+            }
+            
         }
 
         [HttpGet]
-        [Route("get-active")]
+        [Route("get-byStatus")]
         [ApiKey]
         public async Task<ActionResult<List<Pizza>>> GetPizzasByStatus([FromQuery] bool isActive)
         {
-            var pizzas = await _pizzaRepositoryService.GetPizzasByStatus(isActive);
-
-            if (pizzas.Count() <= 0)
+            try 
             {
-                return NoContent();
-            }
+                var pizzas = await _pizzaRepositoryService.GetPizzasByStatus(isActive);
 
-            return Ok(pizzas);
+                if (pizzas.Count() <= 0)
+                {
+                    return NoContent();
+                }
+
+                return Ok(pizzas);
+            }
+            catch (Exception ex)
+            {
+                await _loggingService.LogErrorAsync("Error in GetPizzaByStatus endpoint", ex);
+                return StatusCode(StatusCodes.Status500InternalServerError, "An error occurred while processing your request.");
+            }
+           
         }
 
     }

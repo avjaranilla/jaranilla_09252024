@@ -2,20 +2,27 @@ using jaranilla_09252024.application.Implementation.Repositories;
 using jaranilla_09252024.application.Implementation.Services.Implementation;
 using jaranilla_09252024.application.Implementation.Services.Interfaces;
 using jaranilla_09252024.application.Interfaces.Repositories;
+using jaranilla_09252024.domain.Repositories;
 using jaranilla_09252024.infrastracture.DBContext;
+using jaranilla_09252024.infrastracture.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddDbContext<PizzaDbContext>(options =>
+builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseInMemoryDatabase("PizzaDb")); //for using InMemory DB
 
 
 // Dependency Injections
 builder.Services.AddScoped<IPizzaRepositoryService, PizzaRepositoryService>();
 builder.Services.AddScoped<IPizzaRepository, PizzaRepository>();
+
+builder.Services.AddScoped<IFileProcessingLogRepositoryService, FileProcessingLogRepositoryService>();
+builder.Services.AddScoped<IFileProcessingLogRepository, FileProcessingLogRepository>();
+
+builder.Services.AddScoped<ILoggingService, LoggingService>();
 
 
 
