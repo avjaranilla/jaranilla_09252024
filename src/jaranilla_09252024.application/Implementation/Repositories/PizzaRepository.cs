@@ -25,6 +25,12 @@ namespace jaranilla_09252024.application.Implementation.Repositories
             await _context.SaveChangesAsync();
         }
 
+        public async Task<IEnumerable<Pizza>> GetActivePizzasAsync()
+        {
+            return await _context.Pizzas.Where(p => p.IsActive).ToListAsync();
+
+        }
+
         public async Task<List<Pizza>> GetProcessedPizzasAsync()
         {
             return await _context.Pizzas.ToListAsync();

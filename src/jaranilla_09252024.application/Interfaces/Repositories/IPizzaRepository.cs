@@ -11,5 +11,6 @@ namespace jaranilla_09252024.application.Interfaces.Repositories
     {
         Task AddPizzaAsync(Pizza pizza);
         Task<List<Pizza>> GetProcessedPizzasAsync();
+        Task<IEnumerable<Pizza>> GetActivePizzasAsync();
     }
 }

@@ -34,6 +34,25 @@ namespace jaranilla_09252024.Controllers
         public async Task<ActionResult<List<Pizza>>> GetProcessedPizzas()
         {
             var pizzas = await _pizzaRepository.GetProcessedPizzasAsync();
+            if (pizzas == null)
+            {
+                return NoContent();
+            }
+            return Ok(pizzas);
+        }
+
+        [HttpGet]
+        [Route("get-active")]
+        [ApiKey]
+        public async Task<ActionResult<List<Pizza>>> GetActivePizzas()
+        {
+            var pizzas = await _pizzaRepository.GetActivePizzasAsync();
+
+            if (pizzas == null)
+            {
+                return NoContent();
+            }
+
             return Ok(pizzas);
         }
 
