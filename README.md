@@ -3,37 +3,55 @@ Pizza API Project
 Overview
 This project is a RESTful API for managing pizza records. It supports operations for adding, updating and retrieving pizza entries. Additionally, it provides functionality for bulk uploading pizza data from JSON files and logging the processing details.
 
-FEATURES
+FEATURES:
 Basic Operations: Create, Read, Update records
 File Uploading: Upload JSON files to bulk add pizza records.
 Logging: Track file processing details, including processing time and transaction counts.
 Dynamic Filtering: Retrieve active or inactive pizzas based on query parameters.
 
 
-TECHNOLOGIES USED
+TECHNOLOGIES USED:
 ASP.NET Core 8: Framework for building the API.
 Entity Framework Core: ORM for database interactions.
 EF Core InMemoryDB: Act as DB for storing pizza records and processing logs. Note: When Application is closed DB will be reset.
 C#: Programming language used for the implementation.
 
-PROJECT STRUCTURE
+PROJECT STRUCTURE:
 Api Layer: Contains controllers for handling API requests.
 Application Layer: Contains services and interfaces for business logic.
 Domain Layer: Contains entity models
 Infrastructure Layer: Contains data access implementations and repositories.
 
-STEPS TO RUN
+STEPS TO RUN VIA VISUAL STUDIO:
 1. Clone the repository : https://github.com/avjaranilla/jaranilla_09252024.git
 2. Open sln file in Visual Studio
 3. Set StartUp project to jaranilla_09252024 (api layer)
 4. Build and Run the application
 5. Access the API - navigate to http://localhost:5000/swagger/index.html
 
-AUTHENTICATION
+
+STEPS TO RUN VIA DOCKER:
+Prerequisites:
+	1. Ensure you have Docker installed on your machine.
+	2. Make sure your project is structured with the necessary layers in the src folder.
+Building the Docker Image:
+	1. Open a terminal and navigate to the root directory of your project where the Dockerfile is located. (in this project located under solution)
+	2. Build the Docker image using the following command:
+		docker build -t yourimagename .
+Running the Docker Container:
+	1.Run the Docker container with the following command:
+		docker run --rm -it -p 8000:80 -e ASPNETCORE_HTTP_PORTS=80 yourimagename
+		-this commands map the port 80 of the container to port 8000 of you local machine.
+Acceessing the Application:
+	1. Open your web browser and navigate to http://localhost:8000/swagger/index.html
+
+
+
+AUTHENTICATION:
 The API uses API-KEY based authentication to secure access to its endpoints. Follow these steps to authenticate:
 1. Authorize using X-API-KEY : 9daeee2f-11c4-4381-a18e-aeb0a7c03a24
 
-API ENDPOINTS
+API ENDPOINTS:
 Pizza Controller
 - Bulk Add Pizzas from JSON								
 	-Endpoint: POST /api/pizza/upload-json	
@@ -58,10 +76,10 @@ File ProcessingLog Controller
 
 
 
-LOGGING
+LOGGING:
 All API operations are logged for debugging and tracking purposes. Logs include details such as processing time and errors encountered during file uploads.
 
-ERROR HANDLING
+ERROR HANDLING:
 Errors are handled gracefully, returning appropriate status codes and messages.
 
 
