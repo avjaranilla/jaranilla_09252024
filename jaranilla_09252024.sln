@@ -10,16 +10,16 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{EDC825CA-3F7
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "jaranilla_09252024", "src\jaranilla_09252024\jaranilla_09252024.csproj", "{41BD5C4D-7DEB-43D5-A4E0-7A4C5A2266D9}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{B03155E0-12A9-4DC6-BBBC-7E4942A0D223}"
-	ProjectSection(SolutionItems) = preProject
-		src\jaranilla_09252024\Dockerfile = src\jaranilla_09252024\Dockerfile
-	EndProjectSection
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "jaranilla_09252024.domain", "src\jaranilla_09252024.domain\jaranilla_09252024.domain.csproj", "{982C4296-F6F8-42A6-A8FC-C3979A59EE96}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "jaranilla_09252024.application", "src\jaranilla_09252024.application\jaranilla_09252024.application.csproj", "{A1F26F17-6F0F-44AB-B849-9E1B9C985DB7}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "jaranilla_09252024.infrastracture", "src\jaranilla_09252024.infrastracture\jaranilla_09252024.infrastracture.csproj", "{40BAAA5C-5F03-4864-A107-19753EA51024}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "docker", "docker", "{ECDEC2E6-8858-489E-B8ED-B048CD70DA29}"
+	ProjectSection(SolutionItems) = preProject
+		dockerfile = dockerfile
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
