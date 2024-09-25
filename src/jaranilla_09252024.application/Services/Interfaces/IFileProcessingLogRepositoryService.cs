@@ -12,7 +12,7 @@ namespace jaranilla_09252024.application.Services.Interfaces
     {
         Task<FileProcessingLogViewModel> GetAllLogsAsync();
 
-        Task<FileProcessingLog> AddLogAsync(string Name, TimeSpan processingTime);
+        Task<FileProcessingLog> AddLogAsync(string Name, TimeSpan processingTime, int fileCount);
 
     }
 }

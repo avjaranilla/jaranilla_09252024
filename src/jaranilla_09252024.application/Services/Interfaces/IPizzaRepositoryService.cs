@@ -1,4 +1,5 @@
-﻿using jaranilla_09252024.domain.Domain;
+﻿using jaranilla_09252024.application.Models;
+using jaranilla_09252024.domain.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace jaranilla_09252024.application.Services.Interfaces
     public interface IPizzaRepositoryService
     {
         Task<Pizza> AddPizzaAsync(Pizza pizza);
-        Task<List<Pizza>> AddPizzasAsync(List<Pizza> pizzas, string fileName);
+        Task<AddPizzasReturnModel> AddPizzasAsync(List<Pizza> pizzas, string fileName);
         Task<List<Pizza>> GetProcessedPizzasAsync();
         Task<IEnumerable<Pizza>> GetPizzasByStatus(bool isActive);
 

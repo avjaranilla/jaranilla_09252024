@@ -1,4 +1,5 @@
 ﻿using jaranilla_09252024.application.Interfaces.Repositories;
+using jaranilla_09252024.application.Models;
 using jaranilla_09252024.application.Services.Interfaces;
 using jaranilla_09252024.domain.Domain;
 using System.Diagnostics;
@@ -43,7 +44,7 @@ namespace jaranilla_09252024.application.Services.Implementation
 
                 // Log the processedFile
                 await _loggingService.LogInformationAsync($"Logging Processed File: {"filename here..."}");
-                await _fileProcessingLogRepositoryService.AddLogAsync("FileName Here...", result.ProcessingTime);
+                await _fileProcessingLogRepositoryService.AddLogAsync("FileName Here...", result.ProcessingTime, 1);
 
                 return result;
             }
@@ -54,7 +55,7 @@ namespace jaranilla_09252024.application.Services.Implementation
             }
         }
 
-        public async Task<List<Pizza>> AddPizzasAsync(List<Pizza> pizzas, string fileName)
+        public async Task<AddPizzasReturnModel> AddPizzasAsync(List<Pizza> pizzas, string fileName)
         {
             var processedPizzas = new List<Pizza>();
             var stopwatch = new Stopwatch();
@@ -96,9 +97,18 @@ namespace jaranilla_09252024.application.Services.Implementation
 
             // Log the processed file and total processing time for the bulk operation
             await _loggingService.LogInformationAsync($"Logging processed file: {fileName}");
-            await _fileProcessingLogRepositoryService.AddLogAsync(fileName, totalProcessingTime);
+            
+            var processLogDetails = await _fileProcessingLogRepositoryService.AddLogAsync(fileName, totalProcessingTime, processedPizzas.Count());
 
-            return processedPizzas;
+            // build the return model
+            var returnModel = new AddPizzasReturnModel
+            {
+                FileProcessingLog = processLogDetails,
+                Pizzas = processedPizzas
+            };
+
+
+            return returnModel;
         }
 
         public async Task<IEnumerable<Pizza>> GetPizzasByStatus(bool isActive)

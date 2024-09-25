@@ -12,5 +12,6 @@ namespace jaranilla_09252024.domain.Domain
         public string Filename { get; set; } // File Name
         public TimeSpan ProcessingTime { get; set; } // Duration for processing
         public DateTime ProcessedAt { get; set; } // Timestamp of processing
+        public int TransactionCount { get; set; }  // Count of transaction inside the file
     }
 }

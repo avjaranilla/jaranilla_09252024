@@ -1,4 +1,5 @@
-﻿using jaranilla_09252024.application.Services.Interfaces;
+﻿using jaranilla_09252024.application.Models;
+using jaranilla_09252024.application.Services.Interfaces;
 using jaranilla_09252024.domain.Domain;
 using System;
 using System.Collections.Generic;
@@ -22,7 +23,7 @@ namespace jaranilla_09252024.application.Services.Implementation
             _loggerService = loggerService;
         }
 
-        public async Task<bool> ProcessJsonAsync(Stream jsonStream, string fileName)
+        public async Task<AddPizzasReturnModel> ProcessJsonAsync(Stream jsonStream, string fileName)
         {
             try
             {
@@ -31,9 +32,10 @@ namespace jaranilla_09252024.application.Services.Implementation
 
                 if (pizzas != null && pizzas.Count > 0)
                 {
-                    await _pizzaRepositoryService.AddPizzasAsync(pizzas, fileName); // Call the bulk add method with the file name
+                   return await _pizzaRepositoryService.AddPizzasAsync(pizzas, fileName); // Call the bulk add method with the file name
                 }
-                return true;
+
+                throw new Exception("No Pizza Added!.");
             }
             catch (Exception ex) 
             {

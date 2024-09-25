@@ -32,13 +32,15 @@ namespace jaranilla_09252024.application.Services.Implementation
             return fileProcessingLogsViewModel;
         }
 
-        public async Task<FileProcessingLog> AddLogAsync(string Name, TimeSpan processingTime)
+        public async Task<FileProcessingLog> AddLogAsync(string Name, TimeSpan processingTime, int fileCount)
         {
             var log = new FileProcessingLog
             {
                 Filename = Name,
                 ProcessingTime = processingTime,
-                ProcessedAt = DateTime.UtcNow
+                ProcessedAt = DateTime.UtcNow,
+                TransactionCount = fileCount
+
             };
 
             return await _fileProcessingLogRepository.AddLogAsync(log);

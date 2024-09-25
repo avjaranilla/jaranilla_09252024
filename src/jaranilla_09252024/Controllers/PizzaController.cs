@@ -36,13 +36,12 @@ namespace jaranilla_09252024.Controllers
                     // Call the JSON reader service to process the file
                     var result = await _jsonReaderService.ProcessJsonAsync(stream, jsonFile.FileName);
 
-                    if (!result)
+                    if (result == null)
                     {
-                        return BadRequest("Failed to process JSON file. Please check the file format.");
+                        return BadRequest("Failed to process JSON file. Please check the file format or details.");
                     }
-                }
-
-                return Ok("File processed successfully.");
+                    return Ok(result);
+                }               
             }
             catch (Exception ex)
             {

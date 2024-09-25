@@ -1,4 +1,6 @@
-﻿using System;
+﻿using jaranilla_09252024.application.Models;
+using jaranilla_09252024.domain.Domain;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +10,6 @@ namespace jaranilla_09252024.application.Services.Interfaces
 {
     public interface IJsonReaderService
     {
-        Task<bool> ProcessJsonAsync(Stream jsonStream, string fileName);
+        Task<AddPizzasReturnModel> ProcessJsonAsync(Stream jsonStream, string fileName);
     }
 }
