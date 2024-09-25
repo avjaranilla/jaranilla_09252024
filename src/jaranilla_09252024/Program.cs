@@ -1,7 +1,7 @@
-using jaranilla_09252024.application.Implementation;
 using jaranilla_09252024.application.Implementation.Repositories;
+using jaranilla_09252024.application.Implementation.Services.Implementation;
+using jaranilla_09252024.application.Implementation.Services.Interfaces;
 using jaranilla_09252024.application.Interfaces.Repositories;
-using jaranilla_09252024.application.Interfaces.Services;
 using jaranilla_09252024.infrastracture.DBContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
@@ -14,7 +14,9 @@ builder.Services.AddDbContext<PizzaDbContext>(options =>
 
 
 // Dependency Injections
-builder.Services.AddScoped<IPizzaRepository, PizzaRepository>(); 
+builder.Services.AddScoped<IPizzaRepositoryService, PizzaRepositoryService>();
+builder.Services.AddScoped<IPizzaRepository, PizzaRepository>();
+
 
 
 builder.Services.AddControllers();

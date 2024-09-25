@@ -9,8 +9,10 @@ namespace jaranilla_09252024.application.Interfaces.Repositories
 {
     public interface IPizzaRepository
     {
-        Task AddPizzaAsync(Pizza pizza);
+        Task<Pizza> AddPizzaAsync(Pizza pizza);
         Task<List<Pizza>> GetProcessedPizzasAsync();
-        Task<IEnumerable<Pizza>> GetActivePizzasAsync();
+        Task<IEnumerable<Pizza>> GetPizzasByStatus(bool isActive);
+
+        Task<Pizza> UpdatePizzaAsync(Pizza pizza);
     }
 }

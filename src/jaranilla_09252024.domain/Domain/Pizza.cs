@@ -15,6 +15,7 @@ namespace jaranilla_09252024.domain.Domain
         public bool IsActive { get; set; }
 
         public DateTime DateCreated { get; set; }
+        public TimeSpan ProcessingTime { get; set; }
 
 
 
