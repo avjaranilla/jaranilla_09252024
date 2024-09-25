@@ -1,4 +1,4 @@
-﻿using jaranilla_09252024.application.Implementation.Services.Interfaces;
+﻿using jaranilla_09252024.application.Services.Interfaces;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace jaranilla_09252024.application.Implementation.Services.Implementation
+namespace jaranilla_09252024.application.Services.Implementation
 {
     public class LoggingService : ILoggingService
     {

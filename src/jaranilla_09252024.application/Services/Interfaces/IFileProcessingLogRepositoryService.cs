@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace jaranilla_09252024.application.Implementation.Services.Interfaces
+namespace jaranilla_09252024.application.Services.Interfaces
 {
     public interface IFileProcessingLogRepositoryService
     {

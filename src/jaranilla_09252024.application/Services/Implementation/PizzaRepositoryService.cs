@@ -1,5 +1,5 @@
-﻿using jaranilla_09252024.application.Implementation.Services.Interfaces;
-using jaranilla_09252024.application.Interfaces.Repositories;
+﻿using jaranilla_09252024.application.Interfaces.Repositories;
+using jaranilla_09252024.application.Services.Interfaces;
 using jaranilla_09252024.domain.Domain;
 using jaranilla_09252024.domain.Repositories;
 using Microsoft.EntityFrameworkCore;
@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace jaranilla_09252024.application.Implementation.Services.Implementation
+namespace jaranilla_09252024.application.Services.Implementation
 {
     public class PizzaRepositoryService : IPizzaRepositoryService
     {
@@ -21,8 +21,8 @@ namespace jaranilla_09252024.application.Implementation.Services.Implementation
 
         public PizzaRepositoryService(IPizzaRepository pizzaRepository, IFileProcessingLogRepositoryService fileProcessingLogRepository, ILoggingService logger)
         {
-            this._pizzaRepository = pizzaRepository;
-            this._fileProcessingLogRepositoryService = fileProcessingLogRepository;
+            _pizzaRepository = pizzaRepository;
+            _fileProcessingLogRepositoryService = fileProcessingLogRepository;
             _loggingService = logger;
         }
 
@@ -30,7 +30,7 @@ namespace jaranilla_09252024.application.Implementation.Services.Implementation
         {
             try
             {
-                
+
 
                 // Start measuring the processing time
                 var stopwatch = new Stopwatch();
@@ -55,7 +55,7 @@ namespace jaranilla_09252024.application.Implementation.Services.Implementation
 
                 return result;
             }
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 await _loggingService.LogErrorAsync($"Error adding pizza: {pizza.Name}", ex);
                 throw;
@@ -64,7 +64,7 @@ namespace jaranilla_09252024.application.Implementation.Services.Implementation
 
         public async Task<IEnumerable<Pizza>> GetPizzasByStatus(bool isActive)
         {
-            try 
+            try
             {
                 return await _pizzaRepository.GetPizzasByStatus(isActive);
             }
@@ -73,7 +73,7 @@ namespace jaranilla_09252024.application.Implementation.Services.Implementation
                 await _loggingService.LogErrorAsync($"Error Getting Pizzas", ex);
                 throw;
             }
-            
+
         }
 
         public async Task<List<Pizza>> GetProcessedPizzasAsync()
@@ -92,7 +92,7 @@ namespace jaranilla_09252024.application.Implementation.Services.Implementation
 
         public async Task<Pizza> UpdatePizzaAsync(Pizza pizza)
         {
-           throw new NotImplementedException();
+            throw new NotImplementedException();
         }
     }
 }

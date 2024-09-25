@@ -1,7 +1,7 @@
 using jaranilla_09252024.application.Implementation.Repositories;
-using jaranilla_09252024.application.Implementation.Services.Implementation;
-using jaranilla_09252024.application.Implementation.Services.Interfaces;
 using jaranilla_09252024.application.Interfaces.Repositories;
+using jaranilla_09252024.application.Services.Implementation;
+using jaranilla_09252024.application.Services.Interfaces;
 using jaranilla_09252024.domain.Repositories;
 using jaranilla_09252024.infrastracture.DBContext;
 using jaranilla_09252024.infrastracture.Repositories;
@@ -23,6 +23,8 @@ builder.Services.AddScoped<IFileProcessingLogRepositoryService, FileProcessingLo
 builder.Services.AddScoped<IFileProcessingLogRepository, FileProcessingLogRepository>();
 
 builder.Services.AddScoped<ILoggingService, LoggingService>();
+builder.Services.AddScoped<IJsonReaderService, JsonReaderService>();
+
 
 
 

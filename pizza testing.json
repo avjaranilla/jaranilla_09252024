@@ -1,0 +1,18 @@
+[
+    {
+        "Amount": 12.99,
+        "Description": "Classic pizza with fresh tomatoes and mozzarella.",
+        "IsActive": true,
+        "Name": "Margherita",
+        "Size": "Medium",
+        "Type": "Vegetable"
+    },
+    {
+        "Amount": 15.99,
+        "Description": "Spicy pepperoni with mozzarella.",
+        "IsActive": true,
+        "Name": "Pepperoni",
+        "Size": "Large",
+        "Type": "Meat"
+    }
+]

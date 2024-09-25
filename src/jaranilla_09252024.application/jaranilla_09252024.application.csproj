@@ -11,8 +11,4 @@
     <ProjectReference Include="..\jaranilla_09252024.infrastracture\jaranilla_09252024.infrastracture.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Interfaces\Repositories\" />
-  </ItemGroup>
-
 </Project>

@@ -1,10 +1,6 @@
-﻿using jaranilla_09252024.application.Implementation.Services.Implementation;
-using jaranilla_09252024.application.Implementation.Services.Interfaces;
-using jaranilla_09252024.application.Interfaces.Repositories;
-using jaranilla_09252024.application.Interfaces.Services;
+﻿using jaranilla_09252024.application.Services.Interfaces;
 using jaranilla_09252024.domain.Domain;
 using jaranilla_09252024.Models.RequestModel;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace jaranilla_09252024.Controllers
@@ -15,13 +11,47 @@ namespace jaranilla_09252024.Controllers
     {
         private readonly IPizzaRepositoryService _pizzaRepositoryService;
         private readonly ILoggingService _loggingService;
+        private readonly IJsonReaderService _jsonReaderService;
 
-        public PizzaController(IPizzaRepositoryService pizzaRepositoryService, ILoggingService loggingService)
+        public PizzaController(IPizzaRepositoryService pizzaRepositoryService, ILoggingService loggingService, IJsonReaderService jsonReaderService)
         {
             _pizzaRepositoryService = pizzaRepositoryService;
             _loggingService = loggingService;
+            _jsonReaderService = jsonReaderService;
         }
 
+
+        [HttpPost("upload-json")]
+        public async Task<IActionResult> UploadJson(IFormFile jsonFile)
+        {
+            if (jsonFile == null || jsonFile.Length == 0)
+            {
+                return BadRequest("No file was uploaded.");
+            }
+
+            try
+            {
+                using (var stream = jsonFile.OpenReadStream())
+                {
+                    // Call the JSON reader service to process the file
+                    var result = await _jsonReaderService.ProcessJsonAsync(stream);
+
+                    if (!result)
+                    {
+                        return BadRequest("Failed to process JSON file. Please check the file format.");
+                    }
+                }
+
+                return Ok("File processed successfully.");
+            }
+            catch (Exception ex)
+            {
+                await _loggingService.LogErrorAsync("Error in uploadJson endpoint", ex);
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+
+            return null;
+        }
 
         // Endpoint for adding a single pizza
         [HttpPost]

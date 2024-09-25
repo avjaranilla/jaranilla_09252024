@@ -1,5 +1,5 @@
-﻿using jaranilla_09252024.application.Implementation.Services.Interfaces;
-using jaranilla_09252024.application.Models;
+﻿using jaranilla_09252024.application.Models;
+using jaranilla_09252024.application.Services.Interfaces;
 using jaranilla_09252024.domain.Domain;
 using Microsoft.AspNetCore.Mvc;
 
