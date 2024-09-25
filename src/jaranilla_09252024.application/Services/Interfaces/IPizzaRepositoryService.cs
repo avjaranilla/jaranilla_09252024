@@ -10,11 +10,8 @@ namespace jaranilla_09252024.application.Services.Interfaces
 {
     public interface IPizzaRepositoryService
     {
-        Task<Pizza> AddPizzaAsync(Pizza pizza);
         Task<AddPizzasReturnModel> AddPizzasAsync(List<Pizza> pizzas, string fileName);
         Task<List<Pizza>> GetProcessedPizzasAsync();
         Task<IEnumerable<Pizza>> GetPizzasByStatus(bool isActive);
-
-        Task<Pizza> UpdatePizzaAsync(Pizza pizza);
     }
 }

@@ -9,7 +9,6 @@ namespace jaranilla_09252024.application.Services.Implementation
 {
     public class PizzaRepositoryService : IPizzaRepositoryService
     {
-
         private readonly IPizzaRepository _pizzaRepository;
         private readonly IFileProcessingLogRepositoryService _fileProcessingLogRepositoryService;
         private readonly ILoggingService _loggingService;
@@ -19,40 +18,6 @@ namespace jaranilla_09252024.application.Services.Implementation
             _pizzaRepository = pizzaRepository;
             _fileProcessingLogRepositoryService = fileProcessingLogRepository;
             _loggingService = logger;
-        }
-
-        public async Task<Pizza> AddPizzaAsync(Pizza pizza)
-        {
-            try
-            {
-                // Start measuring the processing time
-                var stopwatch = new Stopwatch();
-                stopwatch.Start();
-
-                // Add the pizza to the repository
-                await _loggingService.LogInformationAsync($"Adding pizza: {pizza.Name}");
-                var result = await _pizzaRepository.AddPizzaAsync(pizza);
-
-                // Stop measuring the processing time
-                stopwatch.Stop();
-
-                // Calculate and save the processing time
-                result.ProcessingTime = stopwatch.Elapsed;
-
-                // Update the pizza with the processing time
-                await _pizzaRepository.UpdatePizzaAsync(result);
-
-                // Log the processedFile
-                await _loggingService.LogInformationAsync($"Logging Processed File: {"filename here..."}");
-                await _fileProcessingLogRepositoryService.AddLogAsync("FileName Here...", result.ProcessingTime, 1);
-
-                return result;
-            }
-            catch (Exception ex)
-            {
-                await _loggingService.LogErrorAsync($"Error adding pizza: {pizza.Name}", ex);
-                throw;
-            }
         }
 
         public async Task<AddPizzasReturnModel> AddPizzasAsync(List<Pizza> pizzas, string fileName)
@@ -137,11 +102,6 @@ namespace jaranilla_09252024.application.Services.Implementation
                 throw;
             }
 
-        }
-
-        public async Task<Pizza> UpdatePizzaAsync(Pizza pizza)
-        {
-            throw new NotImplementedException();
         }
     }
 }

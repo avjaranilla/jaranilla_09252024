@@ -19,14 +19,6 @@ namespace jaranilla_09252024.application.Implementation.Repositories
             _context = context;
         }
 
-        public async Task<Pizza> AddPizzaAsync(Pizza pizza)
-        {
-            _context.Pizzas.Add(pizza);
-            await _context.SaveChangesAsync();
-            return pizza;
-
-        }
-
         public async Task<List<Pizza>> AddPizzasAsync(List<Pizza> pizzas)
         {
             await _context.Pizzas.AddRangeAsync(pizzas);

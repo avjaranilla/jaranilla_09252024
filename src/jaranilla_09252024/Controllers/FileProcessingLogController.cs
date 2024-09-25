@@ -7,6 +7,7 @@ namespace jaranilla_09252024.Controllers
 {
     [Route("api/fileprocessinglogs")]
     [ApiController]
+    [ApiKey]
     public class FileProcessingLogController : Controller
     {
         private readonly IFileProcessingLogRepositoryService _fileProcessingLogRepositoryService;
@@ -18,7 +19,6 @@ namespace jaranilla_09252024.Controllers
 
         [HttpGet]
         [Route("get")]
-        [ApiKey]
         public async Task<ActionResult<FileProcessingLogViewModel>> GetProccessedFileLogs()
         {
             var processedFileLogs = await _fileProcessingLogRepositoryService.GetAllLogsAsync();
