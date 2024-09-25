@@ -1,4 +1,4 @@
-﻿namespace jaranilla_09252024.Models
+﻿namespace jaranilla_09252024.Models.RequestModel
 {
     public class PizzaRequestModel
     {

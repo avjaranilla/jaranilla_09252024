@@ -1,4 +1,5 @@
 ﻿using jaranilla_09252024.application.Implementation.Services.Interfaces;
+using jaranilla_09252024.application.Models;
 using jaranilla_09252024.domain.Domain;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,10 +19,10 @@ namespace jaranilla_09252024.Controllers
         [HttpGet]
         [Route("get")]
         [ApiKey]
-        public async Task<ActionResult<List<FileProcessingLog>>> GetProccessedFileLogs()
+        public async Task<ActionResult<FileProcessingLogViewModel>> GetProccessedFileLogs()
         {
             var processedFileLogs = await _fileProcessingLogRepositoryService.GetAllLogsAsync();
-            if (processedFileLogs.Count() <= 0)
+            if (processedFileLogs.ProcessedFileCount <= 0)
             {
                 return NoContent();
             }

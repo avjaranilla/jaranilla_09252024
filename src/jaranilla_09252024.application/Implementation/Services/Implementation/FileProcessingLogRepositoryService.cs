@@ -1,4 +1,5 @@
 ﻿using jaranilla_09252024.application.Implementation.Services.Interfaces;
+using jaranilla_09252024.application.Models;
 using jaranilla_09252024.domain.Domain;
 using jaranilla_09252024.domain.Repositories;
 using System;
@@ -18,9 +19,17 @@ namespace jaranilla_09252024.application.Implementation.Services.Implementation
             _fileProcessingLogRepository = fileProcessingLogRepository;
         }
 
-        public async Task<IEnumerable<FileProcessingLog>> GetAllLogsAsync()
+        public async Task<FileProcessingLogViewModel> GetAllLogsAsync()
         {
-            return await _fileProcessingLogRepository.GetAllLogsAsync();
+            var fileProcessingLogs =  await _fileProcessingLogRepository.GetAllLogsAsync();
+            FileProcessingLogViewModel fileProcessingLogsViewModel = new FileProcessingLogViewModel
+            {
+                ProcessedFileCount = fileProcessingLogs.Count(),
+                FileProcessingLogs = fileProcessingLogs.ToList()
+            };
+
+
+            return fileProcessingLogsViewModel;
         }
 
         public async Task<FileProcessingLog> AddLogAsync(string Name, TimeSpan processingTime)

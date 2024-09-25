@@ -3,7 +3,7 @@ using jaranilla_09252024.application.Implementation.Services.Interfaces;
 using jaranilla_09252024.application.Interfaces.Repositories;
 using jaranilla_09252024.application.Interfaces.Services;
 using jaranilla_09252024.domain.Domain;
-using jaranilla_09252024.Models;
+using jaranilla_09252024.Models.RequestModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

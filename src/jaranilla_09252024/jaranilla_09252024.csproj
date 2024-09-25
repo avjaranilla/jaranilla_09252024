@@ -23,4 +23,8 @@
     <ProjectReference Include="..\jaranilla_09252024.application\jaranilla_09252024.application.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Models\ViewModel\" />
+  </ItemGroup>
+
 </Project>
