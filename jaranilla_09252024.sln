@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.35027.167
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{EDC825CA-3F74-47FF-AA17-A88B68F1A098}"
+	ProjectSection(SolutionItems) = preProject
+		src\jaranilla_09252024\.dockerignore = src\jaranilla_09252024\.dockerignore
+		src\jaranilla_09252024\Dockerfile = src\jaranilla_09252024\Dockerfile
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "jaranilla_09252024", "src\jaranilla_09252024\jaranilla_09252024.csproj", "{41BD5C4D-7DEB-43D5-A4E0-7A4C5A2266D9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{41BD5C4D-7DEB-43D5-A4E0-7A4C5A2266D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{41BD5C4D-7DEB-43D5-A4E0-7A4C5A2266D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{41BD5C4D-7DEB-43D5-A4E0-7A4C5A2266D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{41BD5C4D-7DEB-43D5-A4E0-7A4C5A2266D9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{41BD5C4D-7DEB-43D5-A4E0-7A4C5A2266D9} = {EDC825CA-3F74-47FF-AA17-A88B68F1A098}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {461E7CD6-6505-4DEC-8D67-DA7F54C03EAA}
+	EndGlobalSection
+EndGlobal
